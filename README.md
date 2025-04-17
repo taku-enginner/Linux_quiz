@@ -1,6 +1,9 @@
-項目 | ポイント
-ngrok URLが403になる | config.hosts に正規表現 or 明示的に許可
-RailsがAPIモード | protect_from_forgery は使えない
-WebhookのCSRF対策 | Rails APIではもともと無効なので 記述不要
-ルーティングミス | routes.rb の to: "controller#action" をアクションと揃える
-MySQL接続失敗 | host: db & rails db:prepare の再実行が効く
+## ✅ 今回の学びまとめ
+
+| 項目                      | ポイント                                                                 |
+|---------------------------|--------------------------------------------------------------------------|
+| ngrok URL が 403 になる   | `config.hosts` に正規表現 (`/.*\.ngrok-free\.app/`) またはドメイン名を追加 |
+| Rails が API モード       | `protect_from_forgery` は使えない。CSRF 無効化の記述は不要              |
+| Webhook の CSRF 対策     | Rails API では CSRF 保護がもともと無効なので設定不要                     |
+| ルーティングミス          | `routes.rb` の `to: "controller#action"` がコントローラと一致しているか確認 |
+| MySQL 接続失敗           | `host: db` にして、`rails db:prepare` を後から実行                       |
