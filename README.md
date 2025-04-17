@@ -93,3 +93,62 @@
 このBotは個人開発の技術検証として運用されています。  
 気になる点やフィードバックがあれば、お気軽にGitHub上でIssueを立ててください！
 
+了解！  
+以下、**最低限シンプル＆正しく閉じられたマークダウン形式**で再整理した「起動手順」です。  
+そのまま `README.md` の末尾に貼り付けてOKです👇
+
+---
+
+```md
+## 起動手順（開発用メモ）
+
+数日後に忘れていそうな自分のための備忘録です。  
+Docker + ngrok を使って開発環境でBotを動かすための手順です。
+
+### 1. Docker起動
+
+```bash
+docker compose -f compose-dev.yaml up
+```
+
+### 2. 別ターミナルでwebコンテナに入る
+
+```bash
+docker compose -f compose-dev.yaml exec web sh
+```
+
+### 3. ngrok起動
+
+```bash
+ngrok http 3000
+```
+
+表示された `https://xxxxx.ngrok-free.app` を控えておく。
+
+### 4. ngrokのドメインをRailsに許可
+
+```ruby
+# config/environments/development.rb
+config.hosts << /[a-z0-9\-]+\.ngrok\.io/
+```
+
+変更したら `docker compose ... up` を再起動。
+
+### 5. LINE DevelopersでWebhook URLを更新
+
+Webhook URLに以下を入力：
+
+```
+https://xxxxx.ngrok-free.app/webhook
+```
+
+「利用する」をONにして保存。
+
+### 6. クイズを手動で送信
+
+```bash
+docker compose -f compose-dev.yaml exec web rails runner "SendDailyQuiz.run"
+```
+
+`.env` に `LINE_USER_ID` を設定しておくこと。
+```
