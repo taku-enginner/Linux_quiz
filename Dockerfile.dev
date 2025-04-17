@@ -5,6 +5,10 @@ COPY Gemfile /sample-api/Gemfile
 COPY Gemfile.lock /sample-api/Gemfile.lock
 RUN bundle install
 
+RUN apt-get update && apt-get install -y cron
+COPY config/schedule.rb /app/config/schedule.rb
+
+
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]

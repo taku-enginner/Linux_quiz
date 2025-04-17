@@ -4,57 +4,76 @@
     - "ls"
     - "mkdir"
   answer: "ls"
+  explanation: "`ls` は list の略で、現在のディレクトリ内のファイルやディレクトリの一覧を表示するコマンドです。"
+
 - question: "現在のディレクトリを表示するコマンドは？"
   choices:
     - "cd"
     - "ls"
     - "pwd"
   answer: "pwd"
+  explanation: "`pwd` は print working directory の略で、現在作業中のディレクトリのパスを表示します。"
+
 - question: "指定したディレクトリに移動するコマンドは？"
   choices:
     - "cd"
     - "ls"
     - "mkdir"
   answer: "cd"
+  explanation: "`cd` は change directory の略で、指定したディレクトリに移動するためのコマンドです。"
+
 - question: "ファイルがない場合に新規作成するコマンドは？"
   choices:
     - "cd"
     - "touch"
     - "mkdir"
   answer: "touch"
+  explanation: "`touch` は指定したファイルがなければ新規作成し、既にある場合は最終更新日時を変更します。"
+
 - question: "ディレクトリを作成するコマンドは？"
   choices:
     - "cd"
     - "ls"
     - "mkdir"
   answer: "mkdir"
+  explanation: "`mkdir` は make directory の略で、新しいディレクトリを作成するためのコマンドです。"
+
 - question: "ファイルを削除するコマンドは？"
   choices:
     - "rm"
     - "ls"
     - "mkdir"
   answer: "rm"
+  explanation: "`rm` は remove の略で、ファイルやディレクトリを削除するためのコマンドです。"
+
 - question: "空のディレクトリを削除するコマンドは？"
   choices:
     - "cd"
     - "rmdir"
     - "mkdir"
   answer: "rmdir"
+  explanation: "`rmdir` は remove directory の略で、空のディレクトリを削除する際に使用します。中にファイルがあると削除できません。"
+
 - question: "ファイルやディレクトリをコピーするコマンドは？"
   choices:
     - "cd"
     - "cp"
     - "mkdir"
   answer: "cp"
+  explanation: "`cp` は copy の略で、ファイルやディレクトリをコピーするためのコマンドです。`-r` オプションでディレクトリもコピー可能です。"
+
 - question: "ファイルを検索するコマンドは？"
   choices:
     - "find"
     - "ls"
     - "mkdir"
   answer: "find"
+  explanation: "`find` はディレクトリ階層を再帰的に探索して、ファイルやディレクトリを検索できる非常に強力なコマンドです。"
+
 - question: "ファイルの中身を表示するコマンドは？"
   choices:
     - "cd"
     - "cat"
     - "mkdir"
   answer: "cat"
+  explanation: "`cat` は concatenate の略で、ファイルの中身を表示したり、複数のファイルを連結して表示する際に使います。"

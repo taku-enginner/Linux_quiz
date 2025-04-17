@@ -1,27 +1,31 @@
-# app/services/send_daily_quiz.rb
 class SendDailyQuiz
   def self.run(user_id: ENV["LINE_USER_ID"])
-    quiz = QuizLoader.quiz_at(Date.today.yday) # 日替わりで出題
-
-    # ✅ クイズをキャッシュに保存（正誤判定で使う）
+    quiz = QuizLoader.quiz_at(Date.today.yday)
     Rails.cache.write("latest_quiz", quiz)
 
-    text = <<~MSG
-      🧠 今日のLinuxクイズ！
+    labels = %w[A B C D]
 
-      【問題. #{quiz[:question]}】
-      
-      選択肢
-        A: #{quiz[:choices][0]}
-        B: #{quiz[:choices][1]}
-        C: #{quiz[:choices][2]}
+    options_text = quiz[:choices].map.with_index do |choice, i|
+      "#{labels[i]}: #{choice}"
+    end.join("\n")
 
-      ※ 回答は「A」「B」「C」で送ってね！
-    MSG
+    question_text = "🧠 今日のLinuxクイズ！\n\n#{quiz[:question]}\n\n#{options_text}"
 
     message = {
-      type: 'text',
-      text: text
+      type: 'template',
+      altText: question_text.truncate(400),
+      template: {
+        type: 'buttons',
+        title: 'Linuxクイズ',
+        text: quiz[:question],
+        actions: quiz[:choices].map.with_index do |choice, i|
+          {
+            type: 'message',
+            label: choice,     # ボタンに表示される文字 → cd, ls, mkdir
+            text: choice    # 実際に送られるメッセージ → A, B, C
+          }
+        end
+      }
     }
 
     client.push_message(user_id, message)
