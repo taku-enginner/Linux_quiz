@@ -91,6 +91,10 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
+      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
     globalid (1.2.1)
@@ -102,6 +106,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    line-bot-api (1.29.1)
     logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -198,6 +203,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dotenv-rails
+  line-bot-api
   mysql2 (~> 0.5)
   puma (>= 5.0)
   rails (~> 7.1.2)
